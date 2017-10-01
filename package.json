@@ -11,10 +11,8 @@
   "license": "MIT",
   "keywords": [
     "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "password",
+    "manager"
   ],
   "devDependencies": {
     "electron": "~1.7.8"
