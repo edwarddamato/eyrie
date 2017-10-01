@@ -4,7 +4,8 @@
   "description": "An attempt to a password manager.",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "webpack"
   },
   "repository": "git@github.com:edwarddamato/eyrie.git",
   "author": "D'Amato, Edward <info@edwarddamato.com>",
@@ -15,6 +16,18 @@
     "manager"
   ],
   "devDependencies": {
-    "electron": "~1.7.8"
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "devtron": "^1.4.0",
+    "electron": "~1.7.8",
+    "webpack": "^3.6.0"
+  },
+  "dependencies": {
+    "ramda": "^0.24.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "redux": "^3.7.2"
   }
 }
