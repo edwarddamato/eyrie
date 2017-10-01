@@ -1,0 +1,22 @@
+{
+  "name": "eyrie",
+  "version": "0.0.1",
+  "description": "An attempt to a password manager.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "git@github.com:edwarddamato/eyrie.git",
+  "author": "D'Amato, Edward <info@edwarddamato.com>",
+  "license": "MIT",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "devDependencies": {
+    "electron": "~1.7.8"
+  }
+}
