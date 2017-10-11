@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "webpack"
+    "build": "webpack",
+    "test": "jest"
   },
   "repository": "git@github.com:edwarddamato/eyrie.git",
   "author": "D'Amato, Edward <info@edwarddamato.com>",
@@ -22,12 +23,14 @@
     "babel-preset-react": "^6.24.1",
     "devtron": "^1.4.0",
     "electron": "~1.7.8",
+    "jest": "^21.2.1",
     "webpack": "^3.6.0"
   },
   "dependencies": {
-    "ramda": "^0.24.1",
+    "ramda": "^0.25.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "rimraf": "^2.6.2"
   }
 }
