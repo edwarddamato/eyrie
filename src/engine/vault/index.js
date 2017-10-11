@@ -5,7 +5,7 @@ import R from 'ramda';
 
 const vault = {
   create: (name, location) => new Promise((resolve, reject) => {
-    fs.writeFile(path.join(location, `${name}.eyrie`), { foo: 'bar' }, err => {
+    fs.writeFile(path.join(location, `${name}.eyrie`), JSON.stringify({ foo: 'bar' }), err => {
       R.isNil(err) ? resolve() : reject(err);
     });
   }),

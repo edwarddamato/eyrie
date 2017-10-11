@@ -6,7 +6,8 @@
   "scripts": {
     "start": "electron .",
     "build": "webpack",
-    "test": "jest"
+    "test": "jest",
+    "coverage": "npm run test -- --coverage"
   },
   "repository": "git@github.com:edwarddamato/eyrie.git",
   "author": "D'Amato, Edward <info@edwarddamato.com>",
