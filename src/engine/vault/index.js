@@ -1,5 +1,5 @@
 import path from 'path';
-import fs from 'fs';
+import { fileSystem as fs } from '../file-system';
 import rimraf from 'rimraf';
 import R from 'ramda';
 import { cryptographer } from '../cryptographer';
@@ -26,6 +26,7 @@ const vault = {
     const cryptoInstance = cryptographer(secret);
     const hashedSecret = cryptoInstance.hash(secret);
 
+    // some refactoring needed here as well
     const newVaultEncrypted = R.compose(
       cryptoInstance.encrypt(hashedSecret),
       JSON.stringify,
