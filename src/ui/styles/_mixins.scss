@@ -1,0 +1,23 @@
+@import "_vars";
+
+@mixin center() {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+@mixin placeholder() {
+  &::-webkit-input-placeholder {@content}
+  &:-moz-placeholder {@content}
+  &::-moz-placeholder {@content}
+  &:-ms-input-placeholder {@content}
+}
+
+@mixin link () {
+  color: $secondary-color;
+}
+
+@mixin link--dark() {
+  
+}
