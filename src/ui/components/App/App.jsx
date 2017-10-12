@@ -3,7 +3,9 @@ import './App.scss';
 
 const App = () => (
   <div className="root_container">
-    woo
+    We're using Node.js {process.versions.node},
+    Chromium {process.versions.chrome},
+    and Electron {process.versions.electron}.
   </div>
 );
 
