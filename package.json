@@ -4,7 +4,7 @@
   "description": "eyrie - the stronghold for all your passwords",
   "main": "main.js",
   "scripts": {
-    "build": "webpack",
+    "build": "node scripts/build.js && webpack",
     "prestart": "yarn build",
     "start": "electron .",
     "pretest": "eslint ./src/**/*.js",
@@ -12,7 +12,7 @@
     "coverage": "npm run test -- --coverage"
   },
   "repository": "git@github.com:edwarddamato/eyrie.git",
-  "author": "D'Amato, Edward <info@edwarddamato.com>",
+  "author": "Edward D'Amato <info@edwarddamato.com>",
   "license": "MIT",
   "keywords": [
     "eyrie",

@@ -1,7 +1,7 @@
 import path from 'path';
 import { fileSystem as fs } from '../file-system';
 import rimraf from 'rimraf';
-import R from 'ramda';
+import { merge, isNil, compose } from 'ramda';
 import { cryptographer } from '../cryptographer';
 
 const VAULT_TEMPLATE = {
@@ -27,14 +27,14 @@ const vault = {
     const hashedSecret = cryptoInstance.hash(secret);
 
     // some refactoring needed here as well
-    const newVaultEncrypted = R.compose(
+    const newVaultEncrypted = compose(
       cryptoInstance.encrypt(hashedSecret),
       JSON.stringify,
-      R.merge(VAULT_TEMPLATE)
+      merge(VAULT_TEMPLATE)
     )({ id: hashedSecret, reference: name });
 
     fs.writeFile(path.join(location, `${name}.eyrie`), newVaultEncrypted, err => {
-      R.isNil(err) ? resolve() : reject(err);
+      isNil(err) ? resolve() : reject(err);
     });
   }),
   delete: (name, location) => {
@@ -42,7 +42,7 @@ const vault = {
   },
   open: (location, password) => new Promise((resolve, reject) => {
     fs.readFile(location, 'UTF8', (err, contents) => {
-      if (!R.isNil(err)) {
+      if (!isNil(err)) {
         reject(err);
       }
 
