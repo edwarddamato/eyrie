@@ -1,19 +1,14 @@
 @import "../../styles/base";
 
 .header {
-  background-color: $white;
   padding: .5rem;
-  overflow: auto;
+  text-align: right;
+  background-color: rgba(255,255,255,0.2);
 
   &_title {
-    float: left;
     font-size: 1rem;
-    font-weight: 100;
-  }
-
-  &_author {
-    font-size: .7rem;
-    float: right;
-    color: $grey;
+    font-weight: 600;
+    letter-spacing: -1px;
+    line-height: 1rem;
   }
 }

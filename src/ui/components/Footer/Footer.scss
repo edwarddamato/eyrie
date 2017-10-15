@@ -1,0 +1,19 @@
+@import "../../styles/base";
+
+.footer {
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  font-size: .55rem;
+  opacity: 0.5;
+  display: flex;
+  align-content: center;
+  line-height: 1rem;
+
+  &_author {
+    margin-right: 5px;
+  }
+  
+  &_version {
+  }
+}

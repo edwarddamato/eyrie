@@ -4,8 +4,7 @@ const app = require('../../../../.app.json');
 
 const Header = () => (
   <header className="header">
-    <h1 className="header_title">eyrie {app.version}</h1>
-    <div className="header_author">Built with ❤️ by {app.author}</div>
+    <h1 className="header_title">eyrie</h1>
   </header>
 );
 
