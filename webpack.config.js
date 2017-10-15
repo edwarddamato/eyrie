@@ -17,6 +17,13 @@ module.exports = {
           fallback: 'style-loader',
           use: 'css-loader!postcss-loader!sass-loader'
         })
+      }, {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url-loader',
+        query: {
+          limit: 10000,
+          name: path.join('assets', 'fonts/[name].[ext]')
+        }
       }
     ]
   },
