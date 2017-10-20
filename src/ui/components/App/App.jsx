@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
-import LocationSelector from '../LocationSelector';
+import WelcomeScreen from '../WelcomeScreen';
 import './App.scss';
 
 const App = () => (
@@ -11,7 +11,7 @@ const App = () => (
     Chromium {process.versions.chrome},
     and Electron {process.versions.electron}. */}
 
-    <LocationSelector />
+    <WelcomeScreen />
     <Footer />
   </div>
 );

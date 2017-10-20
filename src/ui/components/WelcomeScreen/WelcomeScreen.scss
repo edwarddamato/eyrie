@@ -1,0 +1,26 @@
+.ws {
+  // width: 90%;
+  // height: 90%;
+  // position: fixed;
+  // top: 50%;
+  // left: 50%;
+  // transform: translate(-50%, -50%);
+  margin: 0 3rem 3rem 3rem;
+  width: 45%;
+
+  &_title {
+    margin-bottom: 1rem;
+  }
+
+  &_choice {
+    &-list {
+
+    }
+    &-item {
+    }
+    &-button {
+      margin: 1rem 0;
+      width: 100%;
+    }
+  }
+}

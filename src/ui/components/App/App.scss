@@ -1,19 +1,13 @@
 @import "../../styles/base";
 
-@font-face {
-  font-family: 'Cabin';
-  font-style: normal;
-  src: url('../../../../assets/fonts/Cabin/Cabin-Regular.ttf') format('truetype');
-}
-
 html, body{
   margin: 0;
   padding: 0;
 }
 
 body {
-  background-color: $alt-bg-color;
-  font-family: 'Cabin';
+  background-color: $bg-color;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
   font-weight: 400;
   color: $primary-color;
 }
@@ -29,6 +23,18 @@ a {
 h1 {
   margin: 0;
   padding: 0;
+  font-size: 3rem;
+  letter-spacing: -.25rem;
+  line-height: 2.5rem;
+}
+
+h2 {
+  margin: 0;
+  padding: 0;
+  font-size: 3rem;
+  letter-spacing: -.25rem;
+  line-height: 2.5rem;
+  color: $white;
 }
 
 ul {
@@ -45,56 +51,44 @@ ul {
 
 button {
   border: none;
-  font-weight: 100;
+  font-weight: 600;
   font-size: 1rem;
+  letter-spacing: -.1rem;
   background-color: transparent;
-  color: $white;
+  color: $secondary-color;
   cursor: pointer;
-  padding: .75rem 1rem;
+  padding: 1rem 1.5rem;
   outline: none;
-  transition: all .1s ease-in;
   position: relative;
+  border-radius: 5px;
+  border: 1px solid $white;
+  transition: all .1s ease-in;
   z-index: 0;
   overflow: hidden;
 
-  &:before {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: $primary-color;
-    top: 0;
-    left: 0;
-    z-index: -2;
-  }
-
-  &:after {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background-color: $secondary-color;
-    top: 0;
-    left: 0;
-    transition: transform .1s ease-in;
-    transform: scale(0);
-    z-index: -1;
-    
-  }
-
   &:hover {
-    &:after {
-      transform: scale(1.5);
+    color: $primary-color;
+
+    &::before {
+      top: 0;
     }
   }
 
   &:focus {
-    &:after {
-      transform: scale(1.5);
-      background-color: $grey;
-    }
+    
+  }
+
+
+  &:before {
+    content: '';
+    transition: all .1s ease-out;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: $white;
+    top: 100%;
+    left: 0;
+    z-index: -2;
   }
 }

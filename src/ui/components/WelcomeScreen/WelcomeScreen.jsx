@@ -1,10 +1,11 @@
 import React from 'react';
+import { isNil } from 'ramda';
 import { vault } from '../../../engine/vault/';
-import './LocationSelector.scss';
+import './WelcomeScreen.scss';
 const remote = require('electron').remote;
 const dialog = remote.require('electron').dialog;
 
-class LocationSelector extends React.Component {
+class WelcomeScreen extends React.Component {
   constructor (props) {
     super(props);
 
@@ -20,6 +21,7 @@ class LocationSelector extends React.Component {
       properties: ['openDirectory', 'createDirectory'],
       message: 'Choose where you want to save your vault'
     }, filepaths => {
+      if (isNil(filepaths)) return;
       vault.create('my_vault', filepaths[0], 'secret123');
       this.setState({
         vaultCreated: filepaths[0]
@@ -29,12 +31,16 @@ class LocationSelector extends React.Component {
 
   render () {
     return (
-      <div>
-        <button onClick={this.handleCreateVault}>Create a vault!</button>
+      <section className="ws">
+        <h2 className="ws_title">{'Let\'s start.'}</h2>
+        <ul className="ws_choice-list">
+          <li className="ws_choice-item"><button className="ws_choice-button" onClick={this.handleCreateVault}>Create new vault</button></li>
+          <li className="ws_choice-item"><button className="ws_choice-button" onClick={this.handleCreateVault}>Open existing vault</button></li>
+        </ul>
         {this.state.vaultCreated}
-      </div>
+      </section>
     );
   }
 }
 
-export default LocationSelector;
+export default WelcomeScreen;
