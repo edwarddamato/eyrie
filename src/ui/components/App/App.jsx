@@ -12,6 +12,14 @@ class App extends React.Component {
     this.state = {
       loading: false
     };
+
+    this.handleToggleLoadingState = this.handleToggleLoadingState.bind(this);
+  }
+
+  handleToggleLoadingState (isLoading) {
+    this.setState({
+      loading: isLoading
+    });
   }
 
   render () {
@@ -27,7 +35,7 @@ class App extends React.Component {
         Chromium {process.versions.chrome},
         and Electron {process.versions.electron}. */}
 
-        <WelcomeScreen />
+        <WelcomeScreen loadingHandler={this.handleToggleLoadingState} />
         <Footer />
       </div>
     );
