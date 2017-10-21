@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { isNil } from 'ramda';
 import { vault } from '../../../engine/vault/';
 import './WelcomeScreen.scss';
@@ -17,14 +18,20 @@ class WelcomeScreen extends React.Component {
   }
 
   handleCreateVault () {
+    const loadingHandler = this.props.loadingHandler;
+    loadingHandler(true);
+
     dialog.showOpenDialog({
       properties: ['openDirectory', 'createDirectory'],
       message: 'Choose where you want to save your vault'
     }, filepaths => {
-      if (isNil(filepaths)) return;
-      vault.create('my_vault', filepaths[0], 'secret123');
-      this.setState({
-        vaultCreated: filepaths[0]
+      if (isNil(filepaths)) { loadingHandler(false); return; }
+      vault.create('my_vault', filepaths[0], 'secret123').then(() => {
+        this.setState({
+          vaultCreated: filepaths[0]
+        }, () => {
+          loadingHandler(false);
+        });
       });
     });
   }
@@ -42,5 +49,8 @@ class WelcomeScreen extends React.Component {
     );
   }
 }
+WelcomeScreen.propTypes = {
+  loadingHandler: PropTypes.func.isRequired
+};
 
 export default WelcomeScreen;
