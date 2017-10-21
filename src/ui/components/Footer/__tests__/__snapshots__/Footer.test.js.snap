@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer renders correctly 1`] = `
+<footer
+  className="footer"
+>
+  <div
+    className="footer_author"
+  >
+    Built with ❤️ by 
+    Edward D'Amato 
+  </div>
+  <div
+    className="footer_version"
+  >
+    v
+    0.0.1
+  </div>
+</footer>
+`;
