@@ -1,6 +1,5 @@
 import React from 'react';
 import './Header.scss';
-const app = require('../../../../.app.json');
 
 const Header = () => (
   <header className="header">
