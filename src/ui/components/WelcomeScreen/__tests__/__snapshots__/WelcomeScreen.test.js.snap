@@ -33,6 +33,5 @@ exports[`WelcomeScreen renders correctly 1`] = `
       </button>
     </li>
   </ul>
-  
 </section>
 `;

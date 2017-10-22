@@ -1,52 +1,56 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { isNil } from 'ramda';
-import { vault } from '../../../engine/vault/';
+import CreateVault from '../CreateVault';
 import './WelcomeScreen.scss';
-const remote = require('electron').remote;
-const dialog = remote.require('electron').dialog;
+
+const ACTIVE_CHOICE = {
+  NONE: 0,
+  CREATE: 1,
+  OPEN: 2
+};
 
 class WelcomeScreen extends React.Component {
   constructor (props) {
     super(props);
 
     this.state = {
-      vaultCreated: ''
+      activeChoice: ACTIVE_CHOICE.NONE
     };
 
     this.handleCreateVault = this.handleCreateVault.bind(this);
+    this.handleOpenVault = this.handleOpenVault.bind(this);
   }
 
   handleCreateVault () {
-    const loadingHandler = this.props.loadingHandler;
-    loadingHandler(true);
+    this.setState({
+      activeChoice: ACTIVE_CHOICE.CREATE
+    });
+  }
 
-    dialog.showOpenDialog({
-      properties: ['openDirectory', 'createDirectory'],
-      message: 'Choose where you want to save your vault'
-    }, filepaths => {
-      if (isNil(filepaths)) { loadingHandler(false); return; }
-      vault.create('my_vault', filepaths[0], 'secret123').then(() => {
-        this.setState({
-          vaultCreated: filepaths[0]
-        }, () => {
-          loadingHandler(false);
-        });
-      });
+  handleOpenVault () {
+    this.setState({
+      activeChoice: ACTIVE_CHOICE.OPEN
     });
   }
 
   render () {
-    return (
-      <section className="ws">
-        <h2 className="ws_title">{'Let\'s start.'}</h2>
-        <ul className="ws_choice-list">
-          <li className="ws_choice-item"><button className="ws_choice-button" onClick={this.handleCreateVault}>Create new vault</button></li>
-          <li className="ws_choice-item"><button className="ws_choice-button" onClick={this.handleCreateVault}>Open existing vault</button></li>
-        </ul>
-        {this.state.vaultCreated}
-      </section>
-    );
+    switch (this.state.activeChoice) {
+      default:
+      case ACTIVE_CHOICE.NONE:
+        return (
+          <section className="ws">
+            <h2 className="ws_title">{'Let\'s start.'}</h2>
+            <ul className="ws_choice-list">
+              <li className="ws_choice-item"><button className="ws_choice-button" onClick={this.handleCreateVault}>Create new vault</button></li>
+              <li className="ws_choice-item"><button className="ws_choice-button" onClick={this.handleOpenVault}>Open existing vault</button></li>
+            </ul>
+          </section>
+        );
+      case ACTIVE_CHOICE.CREATE:
+        return <CreateVault loadingHandler={this.props.loadingHandler} />;
+      case ACTIVE_CHOICE.OPEN:
+        return <div>OPEN</div>;
+    }
   }
 }
 WelcomeScreen.propTypes = {
