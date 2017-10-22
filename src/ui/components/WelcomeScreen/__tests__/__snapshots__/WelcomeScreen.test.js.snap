@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WelcomeScreen renders correctly 1`] = `
+<section
+  className="ws"
+>
+  <h2
+    className="ws_title"
+  >
+    Let's start.
+  </h2>
+  <ul
+    className="ws_choice-list"
+  >
+    <li
+      className="ws_choice-item"
+    >
+      <button
+        className="ws_choice-button"
+        onClick={[Function]}
+      >
+        Create new vault
+      </button>
+    </li>
+    <li
+      className="ws_choice-item"
+    >
+      <button
+        className="ws_choice-button"
+        onClick={[Function]}
+      >
+        Open existing vault
+      </button>
+    </li>
+  </ul>
+  
+</section>
+`;
