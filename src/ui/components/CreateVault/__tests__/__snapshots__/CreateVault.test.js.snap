@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateVault renders correctly 1`] = `
+<section>
+  <h2>
+    Create Vault
+  </h2>
+  <button
+    onClick={[Function]}
+  >
+    Choose Folder
+  </button>
+</section>
+`;
