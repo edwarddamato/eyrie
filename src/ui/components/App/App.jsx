@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
 import Loader from '../Loader';
+import MainContainer from '../MainContainer';
 import WelcomeScreen from '../WelcomeScreen';
 import './App.scss';
 
@@ -31,11 +32,9 @@ class App extends React.Component {
             : null
         }
         <Header />
-        {/* We're using Node.js {process.versions.node},
-        Chromium {process.versions.chrome},
-        and Electron {process.versions.electron}. */}
-
-        <WelcomeScreen loadingHandler={this.handleToggleLoadingState} />
+        <MainContainer>
+          <WelcomeScreen loadingHandler={this.handleToggleLoadingState} />
+        </MainContainer>
         <Footer />
       </div>
     );
