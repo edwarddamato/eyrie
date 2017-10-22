@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainContainer renders correctly 1`] = `
+<div
+  className="main"
+>
+  <div>
+    foo
+  </div>
+</div>
+`;
