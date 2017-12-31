@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form renders correctly 1`] = `
+<form
+  className="form"
+  onSubmit={[Function]}
+>
+  <label
+    htmlFor="txtFoo"
+  >
+    Moo
+  </label>
+  <input
+    type="text"
+  />
+  <input
+    type="checkbox"
+  />
+  <input
+    type="radio"
+  />
+  <button
+    type="submit"
+  >
+    Submit
+  </button>
+</form>
+`;
