@@ -1,11 +1,6 @@
 {
-  "plugins": [
-    "react"
-  ],
-  "extends": [
-    "plugin:react/recommended",
-    "standard"
-  ],
+  "plugins": ["react"],
+  "extends": ["plugin:react/recommended", "standard"],
   "rules": {
     "semi": [2, "always"],
     "react/prop-types": 2

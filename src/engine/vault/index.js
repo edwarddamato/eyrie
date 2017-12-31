@@ -17,44 +17,56 @@ const decryptAndParseVaultContents = (contents, password) => {
   try {
     return JSON.parse(decryptedContents);
   } catch (err) {
-    throw new Error('Cannot open vault. Have you used the correct password?', err);
+    throw new Error(
+      'Cannot open vault. Have you used the correct password?',
+      err
+    );
   }
 };
 
 const vault = {
-  create: (name, location, secret) => new Promise((resolve, reject) => {
-    const cryptoInstance = cryptographer(secret);
-    const hashedSecret = cryptoInstance.hash(secret);
+  create: (name, location, secret) =>
+    new Promise((resolve, reject) => {
+      const cryptoInstance = cryptographer(secret);
+      const hashedSecret = cryptoInstance.hash(secret);
 
-    // some refactoring needed here as well
-    const newVaultEncrypted = compose(
-      cryptoInstance.encrypt(hashedSecret),
-      JSON.stringify,
-      merge(VAULT_TEMPLATE)
-    )({ id: hashedSecret, reference: name });
+      // TODO: some refactoring needed here as well
+      const newVaultEncrypted = compose(
+        cryptoInstance.encrypt(hashedSecret),
+        JSON.stringify,
+        merge(VAULT_TEMPLATE)
+      )({ id: hashedSecret, reference: name });
 
-    fs.writeFile(path.join(location, `${name}.eyrie`), newVaultEncrypted, err => {
-      isNil(err) ? resolve() : reject(err);
-    });
-  }),
+      fs.writeFile(
+        path.join(location, `${name}.eyrie`),
+        newVaultEncrypted,
+        err => {
+          isNil(err) ? resolve() : reject(err);
+        }
+      );
+    }),
   delete: (name, location) => {
     rimraf.sync(path.join(location, `${name}.eyrie`));
   },
-  open: (location, password) => new Promise((resolve, reject) => {
-    fs.readFile(location, 'UTF8', (err, contents) => {
-      if (!isNil(err)) {
-        reject(err);
-      }
+  open: (location, password) =>
+    new Promise((resolve, reject) => {
+      fs.readFile(location, 'UTF8', (err, contents) => {
+        if (!isNil(err)) {
+          reject(err);
+        }
 
-      // todo: some refactoring here
-      try {
-        const vaultContents = decryptAndParseVaultContents(contents, password);
-        resolve(vaultContents);
-      } catch (err) {
-        reject(err);
-      }
-    });
-  })
+        // TODO: some refactoring here
+        try {
+          const vaultContents = decryptAndParseVaultContents(
+            contents,
+            password
+          );
+          resolve(vaultContents);
+        } catch (err) {
+          reject(err);
+        }
+      });
+    })
 };
 
 export { vault };
