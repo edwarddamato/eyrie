@@ -11,6 +11,7 @@ exports[`Form renders correctly 1`] = `
     Moo
   </label>
   <input
+    id="txtFoo"
     type="text"
   />
   <input

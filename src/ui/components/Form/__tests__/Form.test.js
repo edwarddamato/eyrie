@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { Form, Label, TextBox, CheckBox, RadioButton, SubmitButton } from '../';
 
 describe('Form', () => {
@@ -15,6 +15,20 @@ describe('Form', () => {
       </Form>
     ).toJSON();
     expect(form).toMatchSnapshot();
+  });
+
+  it('mounts with form state based on children', () => {
+    const wrapper = mount(
+      <Form onSubmit={() => {}}>
+        <TextBox id="txtFoo" placeholder="foo" />
+        <TextBox id="txtMoo" placeholder="moo" />
+        <SubmitButton />
+      </Form>
+    );
+    expect(wrapper.state()).toEqual({
+      txtFoo: '',
+      txtMoo: ''
+    });
   });
 
   it('calls the submit function when submitted', () => {

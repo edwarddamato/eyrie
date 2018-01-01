@@ -1,5 +1,10 @@
 import React from 'react';
+import { pathOr, ifElse, isNil } from 'ramda';
 import PropTypes from 'prop-types';
+
+// const getComponentType = propOr(() => {}, 'type');
+
+const getComponentId = pathOr(void 0, ['props', 'id']);
 
 class Form extends React.Component {
   constructor (props) {
@@ -9,6 +14,20 @@ class Form extends React.Component {
   }
 
   componentDidMount () {
+    // TODO: This is a bit ugly - need to think of a better way (especially when there are different form elements)
+    const children = this.props.children;
+    React.Children.forEach(children, child => {
+      const childId = getComponentId(child);
+      ifElse(
+        isNil,
+        () => {},
+        childId => {
+          this.setState({
+            [getComponentId(child)]: ''
+          });
+        }
+      )(childId);
+    });
   }
 
   render () {
@@ -29,7 +48,7 @@ Label.propTypes = {
   htmlFor: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired
 };
-const TextBox = props => (<input type="text" />);
+const TextBox = ({ id }) => (<input id={id} type="text" />);
 TextBox.propTypes = {
   id: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired
