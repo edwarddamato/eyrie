@@ -11,6 +11,9 @@ class Form extends React.Component {
     super(props);
 
     this.state = {};
+
+    this.formSubmit = this.formSubmit.bind(this);
+    this.onTextBoxChange = this.onTextBoxChange.bind(this);
   }
 
   componentDidMount () {
@@ -30,10 +33,26 @@ class Form extends React.Component {
     });
   }
 
+  formSubmit () {
+    this.props.onSubmit(this.state);
+  }
+
+  onTextBoxChange (event) {
+    this.setState({
+      [event.target.id]: event.target.value
+    });
+  }
+
   render () {
     return (
-      <form onSubmit={this.props.onSubmit} className="form">
-        {this.props.children}
+      <form onSubmit={this.formSubmit} className="form">
+        {
+          React.Children.map(this.props.children, child =>
+            React.cloneElement(child, {
+              onChange: this.onTextBoxChange
+            })
+          )
+        }
       </form>
     );
   }
@@ -48,9 +67,10 @@ Label.propTypes = {
   htmlFor: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired
 };
-const TextBox = ({ id }) => (<input id={id} type="text" />);
+const TextBox = ({ id, onChange }) => (<input id={id} onChange={onChange} type="text" />);
 TextBox.propTypes = {
   id: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
   placeholder: PropTypes.string.isRequired
 };
 const CheckBox = props => (<input type="checkbox" />);

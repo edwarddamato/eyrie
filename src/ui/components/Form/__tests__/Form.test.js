@@ -31,17 +31,35 @@ describe('Form', () => {
     });
   });
 
+  it('sets the form state when a form element value changes', () => {
+    const wrapper = mount(
+      <Form onSubmit={() => {}}>
+        <TextBox id="txtFoo" placeholder="moo" />
+        <SubmitButton />
+      </Form>
+    );
+    wrapper.find('input[type="text"]').simulate('change', { target: { id: 'txtFoo', value: 'foobar' } });
+
+    expect(wrapper.state()).toEqual({
+      txtFoo: 'foobar'
+    });
+  });
+
   it('calls the submit function when submitted', () => {
     const formOnSubmit = jest.fn();
 
     const wrapper = shallow(
       <Form onSubmit={formOnSubmit}>
         <TextBox id="txtFoo" placeholder="moo" />
+        <TextBox id="txtMoo" placeholder="moo" />
         <SubmitButton />
       </Form>
     );
     wrapper.find('form').simulate('submit');
 
-    expect(formOnSubmit).toBeCalledWith();
+    expect(formOnSubmit).toBeCalledWith({
+      txtFoo: '',
+      txtMoo: ''
+    });
   });
 });

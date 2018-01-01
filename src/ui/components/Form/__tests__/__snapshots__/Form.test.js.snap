@@ -12,6 +12,7 @@ exports[`Form renders correctly 1`] = `
   </label>
   <input
     id="txtFoo"
+    onChange={[Function]}
     type="text"
   />
   <input
