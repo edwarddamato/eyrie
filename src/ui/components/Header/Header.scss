@@ -1,8 +1,11 @@
 @import "../../styles/base";
 
 .header {
-  padding: .5rem;
+  padding: 1rem;
   text-align: right;
+  position: fixed;
+  top: 0;
+  right: 0;
 
   &_title {
     opacity: 0.2;

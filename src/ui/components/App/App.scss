@@ -35,7 +35,7 @@ h2 {
   font-size: 3rem;
   letter-spacing: -.25rem;
   line-height: 2.5rem;
-  color: $white;
+  color: $primary-color;
 }
 
 ul {
@@ -62,7 +62,7 @@ button {
   outline: none;
   position: relative;
   border-radius: 5px;
-  border: 1px solid $white;
+  border: 1px solid $secondary-color;
   transition: all .1s ease-in;
   z-index: 0;
   overflow: hidden;
@@ -91,5 +91,45 @@ button {
     top: 100%;
     left: 0;
     z-index: -2;
+  }
+}
+
+.form {
+  &_field {
+    margin-bottom: 1rem;
+  }
+
+  &_label {
+    font-size: .75rem;
+    display: block;
+    color: $secondary-color;
+    font-weight: 600;
+    margin-bottom: .25rem;
+  }
+  ::-webkit-input-placeholder {
+    color: $light-grey;
+  }
+
+  &_textbox {
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    border: 1px dotted $secondary-color;
+    color: $primary-color;
+    outline: none;
+    width: 100%;
+
+    &:focus {
+      border: 1px solid $secondary-color;
+    }
+
+    &[readonly] {
+      background-color: transparent;
+      border: none;
+      padding: .5rem 0;
+
+      &:focus {
+        border: none;
+      }
+    }
   }
 }

@@ -5,16 +5,25 @@ exports[`Form renders correctly 1`] = `
   className="form"
   onSubmit={[Function]}
 >
-  <label
-    htmlFor="txtFoo"
+  <div
+    className="form_field"
   >
-    Moo
-  </label>
-  <input
-    id="txtFoo"
-    onChange={[Function]}
-    type="text"
-  />
+    <label
+      className="form_label"
+      htmlFor="txtFoo"
+    >
+      Moo
+    </label>
+    <input
+      className="form_textbox"
+      id="txtFoo"
+      onChange={[Function]}
+      placeholder="moo"
+      readOnly={undefined}
+      type="text"
+      value={undefined}
+    />
+  </div>
   <input
     type="checkbox"
   />

@@ -5,6 +5,87 @@ exports[`CreateVault renders correctly 1`] = `
   <h2>
     Create Vault
   </h2>
+  <form
+    className="form"
+    onSubmit={[Function]}
+  >
+    <div
+      className="form_field"
+    >
+      <label
+        className="form_label"
+        htmlFor="txtVaultName"
+      >
+        Vault Name
+      </label>
+      <input
+        className="form_textbox"
+        id="txtVaultName"
+        onChange={[Function]}
+        placeholder="Vault Name"
+        readOnly={undefined}
+        type="text"
+        value={undefined}
+      />
+    </div>
+    <div
+      className="form_field"
+    >
+      <label
+        className="form_label"
+        htmlFor="txtVaultSecret"
+      >
+        Vault Secret
+      </label>
+      <input
+        className="form_textbox"
+        id="txtVaultSecret"
+        onChange={[Function]}
+        placeholder="Must be at least 8 characters long"
+        readOnly={undefined}
+        type="password"
+        value={undefined}
+      />
+    </div>
+    <div
+      className="form_field"
+    >
+      <label
+        className="form_label"
+        htmlFor="txtConfirmVaultSecret"
+      >
+        Confirm Vault Secret
+      </label>
+      <input
+        className="form_textbox"
+        id="txtConfirmVaultSecret"
+        onChange={[Function]}
+        placeholder=""
+        readOnly={undefined}
+        type="password"
+        value={undefined}
+      />
+    </div>
+    <div
+      className="form_field"
+    >
+      <label
+        className="form_label"
+        htmlFor="txtVaultLocation"
+      >
+        Vault Location
+      </label>
+      <input
+        className="form_textbox"
+        id="txtVaultLocation"
+        onChange={[Function]}
+        placeholder=""
+        readOnly={true}
+        type="text"
+        value=""
+      />
+    </div>
+  </form>
   <button
     onClick={[Function]}
   >
