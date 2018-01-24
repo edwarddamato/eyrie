@@ -33,7 +33,7 @@ exports[`Form renders correctly 1`] = `
   <button
     type="submit"
   >
-    Submit
+    Create
   </button>
 </form>
 `;

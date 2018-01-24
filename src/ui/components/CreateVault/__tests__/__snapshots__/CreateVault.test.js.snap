@@ -21,6 +21,7 @@ exports[`CreateVault renders correctly 1`] = `
       <input
         className="form_textbox"
         id="txtVaultName"
+        maxLength={25}
         onChange={[Function]}
         placeholder="Vault Name"
         readOnly={undefined}
@@ -79,17 +80,18 @@ exports[`CreateVault renders correctly 1`] = `
         className="form_textbox"
         id="txtVaultLocation"
         onChange={[Function]}
-        placeholder=""
+        onClick={[Function]}
+        placeholder="Choose Folder..."
         readOnly={true}
         type="text"
         value=""
       />
     </div>
+    <button
+      type="submit"
+    >
+      Create
+    </button>
   </form>
-  <button
-    onClick={[Function]}
-  >
-    Choose Folder
-  </button>
 </section>
 `;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { pathOr, ifElse, isNil } from 'ramda';
+import { identity, pathOr, ifElse, isNil, dissoc, merge, equals } from 'ramda';
 import PropTypes from 'prop-types';
 
 // const getComponentType = propOr(() => {}, 'type');
@@ -24,25 +24,27 @@ class Form extends React.Component {
       () => {},
       childId => {
         this.setState({
-          [getComponentId(child)]: ''
+          [childId]: ''
         });
       }
     )(childId);
   }
 
-  formSubmit () {
+  formSubmit (e) {
+    e.preventDefault();
     this.props.onSubmit(this.state);
   }
 
-  onTextBoxChange (event) {
+  onTextBoxChange (id, value) {
     this.setState({
-      [event.target.id]: event.target.value
+      [id]: value
     });
   }
 
   render () {
     return (
-      <form onSubmit={this.formSubmit} className="form">
+      // <form onChange={e => { console.log('==----------', e.target); }} onSubmit={this.formSubmit} className="form">
+      <form onChange={e => { console.log('==----------', e.target); }} onSubmit={this.formSubmit} className="form">
         { this.props.children({
           onTextBoxChange: this.onTextBoxChange,
           form: this
@@ -58,24 +60,30 @@ Form.propTypes = {
 
 const getDisplayName = WrappedComponent => WrappedComponent.displayName || WrappedComponent.name || 'Component';
 
-const withForm = (WrappedComponent, form) => {
+const withForm = (WrappedComponent, form, propTypes) => {
   return class extends React.PureComponent {
     static get propTypes () {
-      return {
+      return merge(WrappedComponent.propTypes, {
         form: PropTypes.object.isRequired
-      };
+      });
     }
 
     get displayName () {
       return `Form${getDisplayName(WrappedComponent)}`;
     }
 
+    filterProps (props) {
+      return dissoc('form', props);
+    }
+
+    // TODO: need to think of a better way of how to do this - replicating WrappedComponent doesn't seem sensible
     componentDidMount () {
-      this.props.form.childComponentDidMount(<WrappedComponent {...this.props} />);
+      const formChildComponentDidMount = pathOr(identity, ['props', 'form', 'childComponentDidMount'], this);
+      formChildComponentDidMount(<WrappedComponent {...this.props} />);
     }
 
     render () {
-      return <WrappedComponent {...this.props} />;
+      return <WrappedComponent {...this.filterProps(this.props)} />;
     }
   };
 };
@@ -95,16 +103,42 @@ Label.propTypes = {
   htmlFor: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired
 };
-const BaseTextBox = ({ id, onChange, placeholder, masked, readonly, value }) => (
-  <input
-    className="form_textbox"
-    id={id}
-    onChange={onChange}
-    placeholder={placeholder}
-    type={ masked ? 'password' : 'text' }
-    readOnly={readonly}
-    value={value} />
-);
+class BaseTextBox extends React.PureComponent {
+  constructor (props) {
+    super(props);
+
+    this.onChange = this.onChange.bind(this);
+  }
+  onChange (event) {
+    this.props.onChange(event.target.id, event.target.value);
+  }
+
+  componentWillReceiveProps (nextProps) {
+    const oldValue = this.props.value;
+    const newValue = nextProps.value;
+    const sameValue = equals(oldValue, newValue);
+    if (!sameValue) {
+      // console.log('foo', this.props.id, newValue);
+      this.props.onChange(this.props.id, newValue);
+    }
+  }
+
+  render () {
+    const { id, placeholder, masked, readonly, value, ...restProps } = this.props;
+    // console.log(this.onChange);
+    return (
+      <input
+        className="form_textbox"
+        id={id}
+        placeholder={placeholder}
+        type={ masked ? 'password' : 'text' }
+        readOnly={readonly}
+        value={value}
+        {...restProps}
+        onChange={this.onChange} />
+    );
+  }
+};
 BaseTextBox.propTypes = {
   id: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
@@ -116,6 +150,9 @@ BaseTextBox.propTypes = {
 const TextBox = withForm(BaseTextBox, form => form);
 const CheckBox = props => (<input type="checkbox" />);
 const RadioButton = props => (<input type="radio" />);
-const SubmitButton = props => (<button type="submit">Submit</button>);
+const SubmitButton = ({ text }) => (<button type="submit">{text}</button>);
+SubmitButton.propTypes = {
+  text: PropTypes.string.isRequired
+};
 
 export { Form, Field, Label, TextBox, CheckBox, RadioButton, SubmitButton };

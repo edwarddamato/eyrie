@@ -15,7 +15,7 @@ describe('Form', () => {
             </Field>
             <CheckBox />
             <RadioButton />
-            <SubmitButton />
+            <SubmitButton text="Create" />
           </React.Fragment>
         )}
       </Form>
@@ -30,7 +30,7 @@ describe('Form', () => {
           <React.Fragment>
             <TextBox id="txtFoo" placeholder="foo" onChange={onTextBoxChange} form={form} />
             <TextBox id="txtMoo" placeholder="moo" onChange={onTextBoxChange} form={form} />
-            <SubmitButton />
+            <SubmitButton text="Create" />
           </React.Fragment>
         )}
       </Form>
@@ -47,7 +47,7 @@ describe('Form', () => {
         {({ onTextBoxChange, form }) => (
           <React.Fragment>
             <TextBox id="txtFoo" placeholder="moo" onChange={onTextBoxChange} form={form} />
-            <SubmitButton />
+            <SubmitButton text="Create" />
           </React.Fragment>
         )}
       </Form>
@@ -68,7 +68,7 @@ describe('Form', () => {
           <React.Fragment>
             <TextBox id="txtFoo" placeholder="moo" onChange={onTextBoxChange} form={form} />
             <TextBox id="txtMoo" placeholder="moo" onChange={onTextBoxChange} form={form} />
-            <SubmitButton />
+            <SubmitButton text="Create" />
           </React.Fragment>
         )}
       </Form>

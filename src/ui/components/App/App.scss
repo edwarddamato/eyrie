@@ -127,6 +127,12 @@ button {
       border: none;
       padding: .5rem 0;
 
+      &::-webkit-input-placeholder {
+        color: $primary-color;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
       &:focus {
         border: none;
       }
